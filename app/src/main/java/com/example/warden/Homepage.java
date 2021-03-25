@@ -42,8 +42,7 @@ public class Homepage extends AppCompatActivity {
 
         c.setId(bundle.getString("id", "Default"));
         c.setName(bundle.getString("name", "Default"));
-        c.setParentName(bundle.getString("parent", "Default"));
-        c.setPhone(bundle.getString("phone", "Default"));
+
 
         bnv_Main = findViewById(R.id.meow);
         bnv_Main.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
@@ -83,8 +82,7 @@ public class Homepage extends AppCompatActivity {
 
         bundle1.putString("id",c.getId());
         bundle1.putString("name", c.getName());
-        bundle1.putString("parent", c.getParentName());
-        bundle1.putString("phone", c.getPhone());
+
 
         fragment.setArguments(bundle1);
         transaction.commit();
