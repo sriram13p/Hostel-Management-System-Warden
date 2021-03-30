@@ -47,8 +47,7 @@ public class Homepage extends AppCompatActivity {
         bnv_Main = findViewById(R.id.meow);
         bnv_Main.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bnv_Main.add(new MeowBottomNavigation.Model(2, R.drawable.ic_history));
-        bnv_Main.add(new MeowBottomNavigation.Model(3, R.drawable.ic_report));
-        bnv_Main.add(new MeowBottomNavigation.Model(4, R.drawable.ic_user));
+        bnv_Main.add(new MeowBottomNavigation.Model(3, R.drawable.ic_user));
 
         bnv_Main.show(1, true);
         replace(new HomeFragment());
@@ -63,9 +62,6 @@ public class Homepage extends AppCompatActivity {
                         replace(new HistoryFragment());
                         break;
                     case 3:
-                        replace(new ReportFragment());
-                        break;
-                    case 4:
                         replace(new ProfileFragment());
                         break;
                 }
