@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                             data[0] = username;
                             data[1] = password;
 
-                            PutData putData = new PutData("http://"+i.getIp()+"/Termpaper/wardenlogin.php", "POST", field, data);
+                            PutData putData = new PutData("http://"+i.getIp()+"/wardenlogin.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     String result = putData.getResult();
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                                     {
 
 
-                                        String url="http://"+i.getIp()+"/Termpaper/wardenreadTest.php?username="+username;
+                                        String url="http://"+i.getIp()+"/wardenreadTest.php?username="+username;
                                         FetchData fetchData = new FetchData(url);
                                         if (fetchData.startFetch()) {
                                             if (fetchData.onComplete()) {

@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_height="match_parent">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/nameholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textSize="24sp"
-        android:textColor="@color/red"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Hi Hari"
+        android:textSize="24dp"
+        android:fontFamily="@font/poppinsmedium"
         />
+
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@+id/nameholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="6dp"
+        android:text="Welcome Back!"
+        android:textColor="@color/red"
+        android:textSize="28dp"
+        android:fontFamily="@font/poppinsbold"
+        />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/proinhis"
+
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
 </LinearLayout>
