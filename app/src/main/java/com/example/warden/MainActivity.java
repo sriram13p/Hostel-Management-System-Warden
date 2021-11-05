@@ -2,6 +2,8 @@ package com.example.warden;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
+
+    public static final String fileName="data";
+    public static final String userId="userId";
     private static int TIME_OUT = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +33,21 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
+
+                sharedPreferences = getSharedPreferences(fileName, Context.MODE_PRIVATE);
+                if(sharedPreferences.contains(userId)){
+                    Intent i = new Intent(MainActivity.this, Homepage.class);
+                    startActivity(i);
+                    finish();
+                }
+                else{
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();
+
+                }
+
+
             }
         }, TIME_OUT);
 

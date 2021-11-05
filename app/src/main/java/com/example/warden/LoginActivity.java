@@ -2,7 +2,9 @@ package com.example.warden;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -25,7 +27,11 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button login;
 
-    Bundle bundle = new Bundle();
+    SharedPreferences sharedPreferences;
+    public static final String fileName="data";
+    public static final String userId="userId";
+    public static final String name="name";
+    public static final String photoUrl="photoUrl";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         IP i=new IP();
@@ -42,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
         pass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
         pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+        sharedPreferences = getSharedPreferences(fileName, Context.MODE_PRIVATE);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +93,13 @@ public class LoginActivity extends AppCompatActivity {
                                             if (fetchData.onComplete()) {
                                                 String result1 = fetchData.getResult();
 
-                                                String[] str = result1.split(";", 2);
-                                                bundle.putString("id",str[0]);
-                                                bundle.putString("name", str[1]);
+                                                String[] str = result1.split(";");
 
+                                                SharedPreferences.Editor editor=sharedPreferences.edit();
+                                                editor.putString(userId,str[0]);
+                                                editor.putString(name, str[1]);
+                                                editor.putString(photoUrl,str[2]);
+                                                editor.commit();
 
 
                                                 //End ProgressBar (Set visibility to GONE)
@@ -97,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
                                         progressBar.setVisibility(View.GONE);
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                                         Intent intent=new Intent(getApplicationContext(),Homepage.class);
-                                        intent.putExtras(bundle);
                                         startActivity(intent);
                                         finish();
 

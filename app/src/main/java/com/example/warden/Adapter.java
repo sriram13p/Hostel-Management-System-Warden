@@ -87,10 +87,25 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
         public void setDate(String t1, String t2, String t3, String t4,String t5,String t6,String t7) {
-        sid.setText("ID : "+t1);
-        reason.setText("Reason : "+t2);
-        expintime.setText("ExpInTime : "+t3);
-        expouttime.setText("ExpOutTime : "+t4);
+
+        if(t1.equals("No Record Found"))
+        {
+            sid.setText("No Records Found");
+            reason.setVisibility(View.GONE);
+            expintime.setVisibility(View.GONE);
+            expouttime.setVisibility(View.GONE);
+            correct.setVisibility(View.GONE);
+            wrong.setVisibility(View.GONE);
+            call.setVisibility(View.GONE);
+        }
+        else {
+            sid.setText("ID : " + t1);
+            reason.setText("Reason : " + t2);
+            expintime.setText("ExpInTime : " + t3);
+            expouttime.setText("ExpOutTime : " + t4);
+        }
+
+
         correct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +127,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                             if (putData.onComplete()) {
                                 String result = putData.getResult();
                                 if(result.equals("success")) {
+
                                     Toast.makeText(itemView.getContext(), "Reload the Page", Toast.LENGTH_SHORT).show();
                                 }
                                 else
