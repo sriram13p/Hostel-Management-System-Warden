@@ -1,10 +1,14 @@
 package com.example.warden;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +42,7 @@ public class HomeFragment extends Fragment {
     ProgressBar proinhis;
     IP i=new IP();
     int flag=0;
-
+    static int PERMISSION_CODE=100;
     SharedPreferences sharedPreferences;
 
     public static final String fileName="data";
@@ -64,6 +68,12 @@ public class HomeFragment extends Fragment {
         sharedPreferences=this.getActivity().getSharedPreferences(fileName, Context.MODE_PRIVATE);
 
         nameholder.setText("Hi "+sharedPreferences.getString(name,""));
+
+        if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},PERMISSION_CODE);
+
+        }
 
 
         new fetchData().execute();

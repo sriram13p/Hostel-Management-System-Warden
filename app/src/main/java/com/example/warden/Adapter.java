@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +29,8 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>
+{
     private List<ModelClass> userList;
 
     public Adapter(List<ModelClass>userList)
@@ -69,6 +72,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         private Button wrong;
         private Button call;
         private ProgressBar progressBar;
+        private ConstraintLayout constraintLayout;
         Bundle b=new Bundle();
         IP i=new IP();
 
@@ -82,6 +86,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             wrong=itemView.findViewById(R.id.wrong);
             call=itemView.findViewById(R.id.call);
             progressBar=itemView.findViewById(R.id.proitem);
+            constraintLayout=itemView.findViewById(R.id.item_design);
 
 
         }
@@ -128,11 +133,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                                 String result = putData.getResult();
                                 if(result.equals("success")) {
 
-                                    Toast.makeText(itemView.getContext(), "Reload the Page", Toast.LENGTH_SHORT).show();
+                                    constraintLayout.setVisibility(View.GONE);
+                                    Toast.makeText(itemView.getContext(), "Response Submitted", Toast.LENGTH_SHORT).show();
+
+
                                 }
                                 else
                                 {
                                     Toast.makeText(itemView.getContext(), "Try Again", Toast.LENGTH_SHORT).show();
+
+
                                 }
                                 progressBar.setVisibility(View.GONE);
                             }
@@ -165,11 +175,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                             if (putData.onComplete()) {
                                 String result = putData.getResult();
                                 if(result.equals("success")) {
-                                    Toast.makeText(itemView.getContext(), "Reload the Page", Toast.LENGTH_SHORT).show();
+                                    constraintLayout.setVisibility(View.GONE);
+                                    Toast.makeText(itemView.getContext(), "Response Submitted", Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {
                                     Toast.makeText(itemView.getContext(), "Try Again", Toast.LENGTH_SHORT).show();
+
                                 }
                                 progressBar.setVisibility(View.GONE);
                             }
@@ -184,11 +196,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + t7));
+                itemView.getContext().startActivity(callIntent);
                 System.out.println(t7);
 
-
             }
+
+
+
+
         });
+
 
 
 
