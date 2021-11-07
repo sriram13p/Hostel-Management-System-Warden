@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
+
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="History Fragment"
-        android:textSize="24sp"
-        android:textColor="@color/red"
-        />
+    <LinearLayout
+        android:id="@+id/contactPage"
+        android:visibility="visible"
+        android:animateLayoutChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/datepicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppinsbold"
+                android:hint="select Date"
+                android:textColor="#800000"
+                android:textSize="28dp" />
+
+            <ImageButton
+                android:backgroundTint="@color/white"
+                android:id="@+id/search"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_search" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/proinhis"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewinhis"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
